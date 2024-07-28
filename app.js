@@ -41,7 +41,7 @@ app.use(cors({
 app.use("/upload", express.static(join(__dirname, "upload")));
 
 
-app.get("/", (req, res) => {
+app.get("/welcomepage", (req, res) => {
     res.status(200).json({msg:'Welcome to honeyland note'})
 })
 
