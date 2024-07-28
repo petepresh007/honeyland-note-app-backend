@@ -18,6 +18,7 @@ const infoRouter = require("./router/info");
 const cooker_parser = require("cookie-parser");
 const { join } = require("path");
 const { logs } = require("./middleware/log");
+const mongoose = require("mongoose");
 
 
 /**MIDDLEWARES */
@@ -32,7 +33,7 @@ app.use(cooker_parser())
 
 app.use(cors({
     credentials: true,
-    origin:"https://honeyland-note-app.vercel.app/"
+    origin: "https://honeyland-note-app.vercel.app/"
 }));
 
 //https://frontend-note-khaki.vercel.app/
@@ -40,6 +41,9 @@ app.use(cors({
 app.use("/upload", express.static(join(__dirname, "upload")));
 
 
+app.get("/", (req, res) => {
+    res.status(200).json({msg:'Welcome to honeyland note'})
+})
 
 app.use("/api/v1/user", router);
 app.use("/api/v1/note", noteRouter);
