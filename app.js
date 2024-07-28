@@ -33,7 +33,7 @@ app.use(cooker_parser())
 
 app.use(cors({
     credentials: true,
-    origin: "https://honeyland-note-app.vercel.app/"
+    origin: "https://honeyland-note-app.vercel.app"
 }));
 
 //https://frontend-note-khaki.vercel.app/
