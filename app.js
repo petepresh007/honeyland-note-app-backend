@@ -42,7 +42,7 @@ app.use("/upload", express.static(join(__dirname, "upload")));
 
 
 app.get("/welcomepage", (req, res) => {
-    res.status(200).json({msg:'Welcome to honeyland note'})
+    res.status(200).json({ msg: 'Welcome to honeyland note' })
 })
 
 app.use("/api/v1/user", router);

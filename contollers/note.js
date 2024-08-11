@@ -602,7 +602,7 @@ async function editCreatedNoteByUser(req, res) {
     const { noteID } = req.params;
     const user = await User.findById(req.user.id);
     const note = await Note.findOne({ _id: noteID, createdBy: req.user.id })
-    const { author, description, file, subject, topic } = req.body
+    const { author, description, subject, topic } = req.body
 
     if (!user) {
         throw new NotFoundError("No user was found with the provided id..");
@@ -611,7 +611,7 @@ async function editCreatedNoteByUser(req, res) {
     if (!note) {
         throw new NotFoundError("No note was found...")
     }
-    if (!author && !description && !file && !subject && !topic) {
+    if (!author && !description && !req.file && !subject && !topic) {
         throw new BadrequestError("Please, enter a field to update...")
     }
 

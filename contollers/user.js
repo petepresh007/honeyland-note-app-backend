@@ -9,7 +9,7 @@ const Admin = require("../model/admin");
 const JWT = require("jsonwebtoken");
 const Hod = require("../model/HOD");
 const crypto = require("crypto");
-const {fronturl} = require("../frontenturl");
+const { fronturl } = require("../frontenturl");
 
 
 const registerUser = async (req, res) => {
@@ -321,7 +321,7 @@ const updateUsernamePassword = async (req, res) => {
 
     const isPasswordOk = await bcrypt.compare(password, user.password)
     if (!isPasswordOk) {
-        throw new BadrequestError("Bro, Enter a valid existing password")
+        throw new BadrequestError("Enter a valid existing password")
     }
 
     if (newpassword !== confirmpassword) {
@@ -663,7 +663,7 @@ const AdminRegisterUser = async (req, res) => {
     const acceptedCategory = [
         "Science",
         "Commercial",
-        "Art", 
+        "Art",
         "General"
     ]
 

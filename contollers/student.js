@@ -9,7 +9,7 @@ const Admin = require("../model/admin");
 const JWT = require("jsonwebtoken");
 const crypto = require("crypto");
 const csvParser = require('csv-parser');
-const {fronturl} = require("../frontenturl");
+const { fronturl } = require("../frontenturl");
 
 
 const registerUser = async (req, res) => {
@@ -250,8 +250,10 @@ const updateProfilePics = async (req, res) => {
 
     if (user) {
         const filePath = path.join(__dirname, "..", "upload", user.file);
-        if (fs.existsSync(filePath)) {
-            deleteFile(filePath);
+        if (user.file !== '' || user.file !== undefined) {
+            if (fs.existsSync(filePath)) {
+                deleteFile(filePath);
+            }
         }
         const updateProfilePics = await User.findByIdAndUpdate(req.student.id, {
             firstname: user.firstname,
@@ -679,12 +681,13 @@ const adminRegisterUserViaUpload = async (req, res) => {
                     password: hashedRand,
                     confirmpassword: hashedRand,
                     studentClass,
+                    file: "",
                     category,
                     date: date ? new Date(date) : Date.now(),
                     approved: true
                 });
 
-                if(newUser){
+                if (newUser) {
                     const from = process.env.SMTP_MAIL
                     const to = [email]
                     const subject = `Hi ${firstname} ${lastname} Welcome`
