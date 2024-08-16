@@ -44,7 +44,8 @@ const {
     getHumanNoteAdmin,
     getLangNoteAdmin,
     getMathsNoteAdmin,
-    getVocationalNoteAdmin
+    getVocationalNoteAdmin,
+    getAllSubjectTeacher
 } = require("../contollers/note");
 
 
@@ -79,7 +80,7 @@ router.get("/all-notes", getAllNotes);
 router.get("/note/:noteID", singleNote);
 router.get("/alllimit", getAllNotesWithoutLimit);
 
-
+router.get('/allsubteach', AUTHTWOUSER, getAllSubjectTeacher)
 
 router.get("/computer", getComputerNote);
 router.get("/mathematics", getMathematicsNote);
@@ -98,6 +99,7 @@ router.get("/admlang", AUTHTWO, getLangNoteAdmin);
 router.get("/admhum", AUTHTWO, getHumanNoteAdmin);
 router.get("/admmth", AUTHTWO, getMathsNoteAdmin);
 router.get("/admvoc", AUTHTWO, getVocationalNoteAdmin);
+
 
 
 //HODS

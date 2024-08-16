@@ -1433,6 +1433,21 @@ const hodDeleteNote = async (req, res) => {
 }
 //HOD ENDS
 
+const getAllSubjectTeacher = async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+        throw new NotFoundError('no user was found with the provided id');
+    }
+    try {
+        const note = await Note.find({ subject: user.subject, approved: true });
+        if(!note){
+            throw new NotFoundError('No note is available')
+        }
+        res.status(200).json(note)
+    } catch (error) {
+        next(error);
+    }
+}
 
 
 module.exports = {
@@ -1477,5 +1492,6 @@ module.exports = {
     getHumanNoteAdmin,
     getLangNoteAdmin,
     getMathsNoteAdmin,
-    getVocationalNoteAdmin
+    getVocationalNoteAdmin,
+    getAllSubjectTeacher
 }
